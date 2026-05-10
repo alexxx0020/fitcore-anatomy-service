@@ -31,17 +31,17 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseInterface.findAllByMuscleId(id));
     }
 
-    @PostMapping("/exercise/create")
+    @PostMapping("/exercise")
     public ResponseEntity<ExerciseDto> addExercise(@RequestBody RequestExerciseDto exerciseDto){
         return ResponseEntity.ok(exerciseInterface.addExercise(exerciseDto));
     }
 
-    @PutMapping("/exercise/update/{id}")
-    public ResponseEntity<ExerciseDto> updateExercise(@PathVariable UUID id ,@RequestBody ExerciseDto exerciseDto){
+    @PutMapping("/exercise/{id}")
+    public ResponseEntity<ExerciseDto> updateExercise(@PathVariable UUID id ,@RequestBody RequestExerciseDto exerciseDto){
         return ResponseEntity.ok(exerciseInterface.updateExercise(id,exerciseDto));
     }
 
-    @DeleteMapping("/exercise/delete/{id}")
+    @DeleteMapping("/exercise/{id}")
     public ResponseEntity<ExerciseDto> deleteExercise(@PathVariable UUID id){
         return ResponseEntity.ok(exerciseInterface.deleteById(id));
     }}

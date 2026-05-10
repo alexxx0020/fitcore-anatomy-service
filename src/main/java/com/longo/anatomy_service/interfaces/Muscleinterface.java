@@ -15,6 +15,6 @@ public interface Muscleinterface {
     MuscleDto findById(UUID uuid);
     List<MuscleExerciseWithExerciseDto> findAllByExerciseId(UUID id);
     MuscleDto addMuscle(RequestMuscleDto muscleDto);
-    MuscleDto updateMuscle(UUID id,MuscleDto muscleDto);
+    MuscleDto updateMuscle(UUID id,RequestMuscleDto muscleDto);
     MuscleDto deleteById(UUID id);
 }

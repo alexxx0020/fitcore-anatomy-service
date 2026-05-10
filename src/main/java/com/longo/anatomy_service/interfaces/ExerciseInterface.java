@@ -13,6 +13,6 @@ public interface ExerciseInterface {
     ExerciseDto findById(UUID id);
     List<MuscleExerciseWithMuscleDto> findAllByMuscleId(UUID id);
     ExerciseDto addExercise(RequestExerciseDto exerciseDto);
-    ExerciseDto updateExercise(UUID id,ExerciseDto exerciseDto);
+    ExerciseDto updateExercise(UUID id,RequestExerciseDto exerciseDto);
     ExerciseDto deleteById(UUID id);
 }

@@ -66,7 +66,7 @@ public class ExerciseService implements ExerciseInterface {
     }
 
     @Override
-    public ExerciseDto updateExercise(UUID id, ExerciseDto exerciseDto) {
+    public ExerciseDto updateExercise(UUID id, RequestExerciseDto exerciseDto) {
 
         Exercise exercise = exerciseRepository.findById(id).orElseThrow(
                 () -> new ItemNotFoundException("Nessun elemento presente con id " + id)

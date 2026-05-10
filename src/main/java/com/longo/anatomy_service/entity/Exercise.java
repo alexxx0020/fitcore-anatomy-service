@@ -6,6 +6,8 @@ import com.longo.anatomy_service.enums.Modalita;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +26,18 @@ public class Exercise {
 
     private String nome;
 
+    @Column(name = "categoria")
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private Categoria categoria;
 
+    @Column(name = "modalita")
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private Modalita modalita;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private Difficolta difficolta;
 
     @Column(name = "descrizione_generale")

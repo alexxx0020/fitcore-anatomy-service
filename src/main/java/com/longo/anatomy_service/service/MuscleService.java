@@ -66,7 +66,7 @@ public class MuscleService implements Muscleinterface {
     }
 
     @Override
-    public MuscleDto updateMuscle(UUID id, MuscleDto muscleDto) {
+    public MuscleDto updateMuscle(UUID id, RequestMuscleDto muscleDto) {
 
         Muscle muscle = muscleRepository.findById(id).orElseThrow(
                 () -> new ItemNotFoundException("Nessun elemento presente con id " + id)
