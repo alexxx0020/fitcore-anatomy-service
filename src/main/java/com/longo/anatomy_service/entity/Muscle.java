@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +20,7 @@ public class Muscle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "muscle_id")
     private UUID muscleId;
 
     @Column(name = "nome_comune")
@@ -54,4 +57,7 @@ public class Muscle {
 
     @Column(name = "thumbnail_url")
     private String thumbnailUrl;
+
+    @OneToMany(mappedBy = "muscle", fetch = FetchType.LAZY)
+    private List<MuscleExcercise> exercises = new ArrayList<>();
 }

@@ -1,9 +1,11 @@
 package com.longo.anatomy_service.service;
 
 import com.longo.anatomy_service.dto.MuscleDto;
+import com.longo.anatomy_service.dto.MuscleExerciseWithExerciseDto;
 import com.longo.anatomy_service.entity.Muscle;
 import com.longo.anatomy_service.exception.ItemNotFoundException;
 import com.longo.anatomy_service.interfaces.Muscleinterface;
+import com.longo.anatomy_service.repository.MuscleExerciseRepository;
 import com.longo.anatomy_service.repository.MuscleRepository;
 import com.sun.java.accessibility.util.Translator;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class MuscleService implements Muscleinterface {
 
     private final MuscleRepository muscleRepository;
     private final ModelMapper modelMapper;
+    private final MuscleExerciseRepository muscleExerciseRepository;
 
 
     @Override
@@ -38,5 +41,12 @@ public class MuscleService implements Muscleinterface {
         );
 
         return modelMapper.map(muscle, MuscleDto.class);
+    }
+
+    @Override
+    public List<MuscleExerciseWithExerciseDto> findAllByExerciseId(UUID id) {
+        return muscleExerciseRepository.findAllByExerciseId(id).stream()
+                .map(me -> modelMapper.map(me, MuscleExerciseWithExerciseDto.class))
+                .toList();
     }
 }
