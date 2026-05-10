@@ -29,22 +29,22 @@ public class MuscleController {
     }
 
     @GetMapping("/exercise/{id}/muscles")
-    private ResponseEntity<List<MuscleExerciseWithExerciseDto>> findEx(@PathVariable UUID id){
+    public ResponseEntity<List<MuscleExerciseWithExerciseDto>> findEx(@PathVariable UUID id){
         return ResponseEntity.ok(muscleinterface.findAllByExerciseId(id));
     }
 
     @PostMapping("/muscle/create")
-    private ResponseEntity<MuscleDto> addMuscle(@RequestBody RequestMuscleDto muscleDto){
+    public ResponseEntity<MuscleDto> addMuscle(@RequestBody RequestMuscleDto muscleDto){
         return ResponseEntity.ok(muscleinterface.addMuscle(muscleDto));
     }
 
     @PutMapping("/muscle/update/{id}")
-    private ResponseEntity<MuscleDto> updateMuscle(@PathVariable UUID id, @RequestBody MuscleDto muscleDto){
+    public ResponseEntity<MuscleDto> updateMuscle(@PathVariable UUID id, @RequestBody MuscleDto muscleDto){
         return ResponseEntity.ok(muscleinterface.updateMuscle(id, muscleDto));
     }
 
     @DeleteMapping("/muscle/delete/{id}")
-    private ResponseEntity<MuscleDto> deleteMuscle(@PathVariable UUID id){
+    public ResponseEntity<MuscleDto> deleteMuscle(@PathVariable UUID id){
         return ResponseEntity.ok(muscleinterface.deleteById(id));
     }
 }
