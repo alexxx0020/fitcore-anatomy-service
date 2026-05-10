@@ -34,4 +34,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
+    @ExceptionHandler(RequestNotValidException.class)
+    public ResponseEntity<ErrorResponse> catchNotValidException(RequestNotValidException ex){
+        ErrorResponse response = new ErrorResponse();
+
+        response.setMessage(ex.getMessage());
+        response.setStatus(HttpStatus.BAD_REQUEST.value());
+        response.setLocalDateTime(LocalDateTime.now());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
 }

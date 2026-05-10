@@ -2,13 +2,11 @@ package com.longo.anatomy_service.controller;
 
 import com.longo.anatomy_service.dto.MuscleDto;
 import com.longo.anatomy_service.dto.MuscleExerciseWithExerciseDto;
+import com.longo.anatomy_service.dto.RequestMuscleDto;
 import com.longo.anatomy_service.interfaces.Muscleinterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,5 +31,20 @@ public class MuscleController {
     @GetMapping("/exercise/{id}/muscles")
     private ResponseEntity<List<MuscleExerciseWithExerciseDto>> findEx(@PathVariable UUID id){
         return ResponseEntity.ok(muscleinterface.findAllByExerciseId(id));
+    }
+
+    @PostMapping("/muscle/create")
+    private ResponseEntity<MuscleDto> addMuscle(@RequestBody RequestMuscleDto muscleDto){
+        return ResponseEntity.ok(muscleinterface.addMuscle(muscleDto));
+    }
+
+    @PutMapping("/muscle/update/{id}")
+    private ResponseEntity<MuscleDto> updateMuscle(@PathVariable UUID id, @RequestBody MuscleDto muscleDto){
+        return ResponseEntity.ok(muscleinterface.updateMuscle(id, muscleDto));
+    }
+
+    @DeleteMapping("/muscle/delete/{id}")
+    private ResponseEntity<MuscleDto> deleteMuscle(@PathVariable UUID id){
+        return ResponseEntity.ok(muscleinterface.deleteById(id));
     }
 }
