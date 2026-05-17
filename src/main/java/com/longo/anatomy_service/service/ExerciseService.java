@@ -14,6 +14,7 @@ import com.longo.anatomy_service.repository.MuscleExerciseRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -94,11 +95,16 @@ public class ExerciseService implements ExerciseInterface {
 
 
     @Override
+    @Transactional
     public ExerciseDto deleteById(UUID id) {
         Exercise found = exerciseRepository.findById(id).orElseThrow(
                 () -> new ItemNotFoundException("Nessun elemento presente con id " + id)
         );
 
+        if (!found.getMuscles().isEmpty()){
+            throw new RequestNotValidException("Impossibile completare la richiesta, sono presenti" +
+                    " " + found.getMuscles().size() + " relazioni attive. Rimuovile prima di procedere");
+        }
         exerciseRepository.delete(found);
 
         return modelMapper.map(found, ExerciseDto.class);

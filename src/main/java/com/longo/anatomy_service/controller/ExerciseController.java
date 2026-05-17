@@ -2,6 +2,7 @@ package com.longo.anatomy_service.controller;
 
 import com.longo.anatomy_service.dto.*;
 import com.longo.anatomy_service.interfaces.ExerciseInterface;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,12 +33,12 @@ public class ExerciseController {
     }
 
     @PostMapping("/exercise")
-    public ResponseEntity<ExerciseDto> addExercise(@RequestBody RequestExerciseDto exerciseDto){
+    public ResponseEntity<ExerciseDto> addExercise(@Valid @RequestBody RequestExerciseDto exerciseDto){
         return ResponseEntity.ok(exerciseInterface.addExercise(exerciseDto));
     }
 
     @PutMapping("/exercise/{id}")
-    public ResponseEntity<ExerciseDto> updateExercise(@PathVariable UUID id ,@RequestBody RequestExerciseDto exerciseDto){
+    public ResponseEntity<ExerciseDto> updateExercise(@PathVariable UUID id ,@Valid @RequestBody RequestExerciseDto exerciseDto){
         return ResponseEntity.ok(exerciseInterface.updateExercise(id,exerciseDto));
     }
 

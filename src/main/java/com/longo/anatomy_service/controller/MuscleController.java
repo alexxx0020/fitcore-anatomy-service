@@ -6,6 +6,7 @@ import com.longo.anatomy_service.dto.MuscleExerciseWithExerciseDto;
 import com.longo.anatomy_service.dto.RequestMuscleDto;
 import com.longo.anatomy_service.interfaces.MuscleExerciseInterface;
 import com.longo.anatomy_service.interfaces.Muscleinterface;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.annotation.DeclareError;
 import org.springframework.http.HttpStatus;
@@ -39,12 +40,12 @@ public class MuscleController {
     }
 
     @PostMapping("/muscle")
-    public ResponseEntity<MuscleDto> addMuscle(@RequestBody RequestMuscleDto muscleDto){
+    public ResponseEntity<MuscleDto> addMuscle(@Valid @RequestBody RequestMuscleDto muscleDto){
         return ResponseEntity.ok(muscleinterface.addMuscle(muscleDto));
     }
 
     @PutMapping("/muscle/{id}")
-    public ResponseEntity<MuscleDto> updateMuscle(@PathVariable UUID id, @RequestBody RequestMuscleDto muscleDto){
+    public ResponseEntity<MuscleDto> updateMuscle(@PathVariable UUID id,@Valid @RequestBody RequestMuscleDto muscleDto){
         return ResponseEntity.ok(muscleinterface.updateMuscle(id, muscleDto));
     }
 
@@ -54,7 +55,7 @@ public class MuscleController {
     }
 
     @PostMapping("muscle/{muscleId}/exercise/{exerciseId}")
-    public ResponseEntity<?> addRelation(@RequestBody MuscleExerciseRequestDto muscleExerciseRequestDto,
+    public ResponseEntity<?> addRelation(@Valid @RequestBody MuscleExerciseRequestDto muscleExerciseRequestDto,
                                          @PathVariable UUID muscleId,
                                          @PathVariable UUID exerciseId){
         return ResponseEntity.ok(muscleExerciseInterface.addRelations(muscleId, exerciseId, muscleExerciseRequestDto));
