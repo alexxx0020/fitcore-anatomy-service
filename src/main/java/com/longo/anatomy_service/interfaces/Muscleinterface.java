@@ -1,6 +1,7 @@
 package com.longo.anatomy_service.interfaces;
 
 import com.longo.anatomy_service.dto.MuscleDto;
+import com.longo.anatomy_service.dto.MuscleExerciseRequestDto;
 import com.longo.anatomy_service.dto.MuscleExerciseWithExerciseDto;
 import com.longo.anatomy_service.dto.RequestMuscleDto;
 import com.longo.anatomy_service.entity.MuscleExcercise;
